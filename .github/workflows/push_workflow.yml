@@ -3,10 +3,9 @@ name: Deploy
 on:
   push:
     branches: [ main ]
-
 jobs:
   runs-on: ubuntu-latest
-
+  
   steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
@@ -29,5 +28,5 @@ jobs:
 
     # Deploy to the defined URL using the token
     - name: Deploy to surge
-      run: surge ./dist ${{secrets.TOKEN}} --token ${{secrets.TOKEN}}
+      run: surge ./dist ${{secrets.SURGE_URL}} --token ${{secrets.SURGE_TOKEN}}
 
