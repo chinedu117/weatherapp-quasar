@@ -35,5 +35,5 @@ jobs:
 
       # Deploy to the defined URL using the token 
       - name: Deploy to surge
-        run: surge ./dist ${{secrets.SURGE_URL}} --token ${{secrets.SURGE_TOKEN}}
+        run: surge ./dist/spa ${{secrets.SURGE_URL}} --token ${{secrets.SURGE_TOKEN}}
 
