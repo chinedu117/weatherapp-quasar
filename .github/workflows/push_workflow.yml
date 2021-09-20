@@ -33,7 +33,7 @@ jobs:
       - name: Install Surge
         run: npm install -g surge
 
-      # Deploy to the defined URL using the token
+      # Deploy to the defined URL using the token 
       - name: Deploy to surge
         run: surge ./dist ${{secrets.SURGE_URL}} --token ${{secrets.SURGE_TOKEN}}
 
