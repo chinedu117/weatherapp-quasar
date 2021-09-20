@@ -67,6 +67,19 @@
 <script>
 import { defineComponent } from "vue";
 
+var debounce = (cb,delay) => {
+     
+     var timer;
+     return function() {
+        if(timer) clearTimeout(timer) 
+        var context = this
+        var params = arguments
+        return setTimeout(() => {
+           cb.apply(context,params)
+        }, delay);
+     }
+}
+
 export default defineComponent({
   data() {
     return {
@@ -124,19 +137,18 @@ export default defineComponent({
         });
     },
 
-    getWeatherBySearch() {
+    getWeatherBySearch: debounce(function() {
       this.$q.loading.show();
       this.$axios
         .get(`${this.apiUrl}q=${this.search}&appid=${this.apiKey}&units=metric`)
         .then((response) => {
-          console.log(response.data);
           this.weatherData = response.data;
         })
         .catch(console.log)
         .finally(() => {
           this.$q.loading.hide();
         });
-    },
+    },5000),
   },
 });
 </script>
